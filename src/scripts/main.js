@@ -1,17 +1,19 @@
 'use strict';
 
 const buttons = document.querySelectorAll('.button');
-const table = document.querySelector('.field');
+const table = document.querySelector('.field') || null;
 
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
     const rows = [...table.rows];
     const rowsLength = rows.length;
 
-    if (e.target.classList.contains('append-row')) {
-      const cloneRow = rows[rowsLength - 1].cloneNode(true);
+    if (rowsLength < 10) {
+      if (e.target.classList.contains('append-row')) {
+        const cloneRow = rows[rowsLength - 1].cloneNode(true);
 
-      table.querySelector('tbody').appendChild(cloneRow);
+        table.querySelector('tbody').appendChild(cloneRow);
+      }
     }
 
     if (e.target.classList.contains('remove-row')) {
